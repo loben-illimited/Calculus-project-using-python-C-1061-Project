@@ -34,6 +34,7 @@ class Get_info:
             #print("lng:", self.lng)
         except:
             print("系統無法判斷你輸入的位置 ")
+        return [self.lat, self.lng]
     
     def time_off_set(self):
         now = datetime.datetime.now()
@@ -63,4 +64,37 @@ class Get_info:
         print("rawOffset", self.rawOffset, sep=": ")
         print("timeZoneID", self.timeZoneID, sep=": ")
         print("timeZoneName", self.timeZoneName, sep=": ")
-        
+    
+    def get_timezone_info(self):
+        print("地點全稱：", self.address)
+        print("rawOffset", self.rawOffset, sep=": ")
+        print("timeZoneID", self.timeZoneID, sep=": ")
+        print("timeZoneName", self.timeZoneName, sep=": ")
+
+class Timezone_google_api:
+    
+    def __init__(self, year, month, day, lat, lng):
+        self.date = str(year)+"-"+str(month)+"-"+str(day) #date format: YYYY-MM-DD
+        self.lat = str(lat)
+        self.lng = str(lng)
+        self.formatted = str(0) #不進行格式處理，以方便後續處理
+
+    def get(self):
+        url = "https://api.sunrise-sunset.org/json?lat="+self.lat+"&lng="+self.lng+"&date="+self.date+"&formatted="+self.formatted
+        json_data = urlopen(url).read().decode("utf8")
+        try:
+            jsonObj = json.loads(json_data)
+
+            sunrise_time_str = jsonObj.get("results").get("sunrise")
+            sunset_time_str = jsonObj.get("results").get("sunset")
+            #print("日出時間(UTC):", sunrise_time_str)
+            #print("日落時間(UTC):", sunset_time_str)
+
+            import datetime #處理時間用
+            sunrise_time = datetime.datetime.strptime(sunrise_time_str, "%Y-%m-%dT%H:%M:%S+00:00")
+            sunset_time = datetime.datetime.strptime(sunset_time_str, "%Y-%m-%dT%H:%M:%S+00:00")
+            #print("日出時間(UTC): ", sunrise_time)
+            #print("日落時間(UTC): ", sunset_time)
+        except:
+            print("輸入資料出錯")
+        return [sunrise_time, sunset_time]
