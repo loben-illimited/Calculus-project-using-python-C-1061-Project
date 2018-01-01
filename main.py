@@ -169,9 +169,9 @@ elif user_opition == 6:
     max_date = var_date
     min_date = var_date
     max_value = 0
-    min_value = 999999999999999999999999
+    zenith = 90 + (50 / 60) #假定zenith
+    min_value = second_layer_menu_opition_5(second_layer_menu_opition_4(start_year, start_month, start_day, zenith))[2]
     while(not (var_date.date() == end_date.date()) ):
-        var_date = var_date + datetime.timedelta(days = 1)
         year = var_date.year
         month = var_date.month
         day = var_date.day
@@ -185,6 +185,7 @@ elif user_opition == 6:
             min_date = var_date
         result += [arr]
         print("date: ", var_date, " result: ", arr)
+        var_date = var_date + datetime.timedelta(days = 1)
     print("daytime 最大時間: ", max_date, " 秒數為: ", max_value)
     print("daytime 最小時間", min_date, " 秒數為: ", min_value)
     second_layer_menu_opition_6(result)
