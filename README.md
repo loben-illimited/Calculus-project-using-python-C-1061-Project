@@ -32,9 +32,7 @@
 
 ### 計算日出日落
 
-參考了[Sunrise/Sunset Algorithm](http://www.edwilliams.org/sunrise_sunset_algorithm.htm) 及 使用[Sunrise/Sunset Algorithm Example](http://www.edwilliams.org/sunrise_sunset_example.htm)驗證程式的正確性
-
-
+參考了[Sunrise/Sunset Algorithm](http://www.edwilliams.org/sunrise_sunset_algorithm.htm) 及 使用[Sunrise/Sunset Algorithm Example](http://www.edwilliams.org/sunrise_sunset_example.htm)的計算這種驗證程式的正確性
 
 -----
 
@@ -1751,6 +1749,69 @@ pylab.show()
 
 -----
 
+## 執行畫面
+
+1. 主程式為`main.py`
+
+   ![主程式](https://i.imgur.com/eNyRGtS.png)
+
+2. 程式具有下列的功能
+
+   >1. 經緯度相關 (列出輸入地點的經緯度)
+   >2. 時區相關 (列出與時區相關的資訊)
+   >3. 日出日落相關 (使用Google 提供的 API)
+   >4. 日出日落相關 (使用參考的公式計算)
+   >5. 計算daytime (輸出白天長度)
+   >6. 輸出特定時間內的 daytime 秒數之間關係的圖形
+
+   ![程式功能](https://i.imgur.com/cxUiBLF.png)
+
+###功能一 (列出輸入地點的經緯度)
+
+* 可透過輸入地點而得出經緯度
+
+  ![得出經緯度](https://i.imgur.com/I9HSyll.png)
+
+### 功能二 (藉由Google 提供的API去求得該地點的日出日落時間)
+
+![日出日落時間](https://i.imgur.com/gcruSS2.png)
+
+### 功能三 (求出該地點的時區為何)
+
+* 藉由Google Timezone API取得特定經緯度的時區
+
+  ![求出時區](https://i.imgur.com/i1FXG2q.png)
+
+  > 因為直接藉由公式所求出的日出日落時間為`UTC`時間，故所藉由取得offset方向轉換為當地實際時間
+
+### 功能四 (使用自行參考的公式求出該地點的日出日落時間)
+
+![公式求出日出日落時間](https://i.imgur.com/CLzleva.png)
+
+> 並可看到實際日出日落時間與計算求出的日出日落時間相差不大
+
+### 功能五 (計算日照長度)
+
+![計算日照長度](https://i.imgur.com/3QefS5n.png)
+
+### 功能六 (將特定日期內的日照長度繪畫出來)
+
+![日照長度圖形](https://i.imgur.com/DI14Q6w.png)
+
+-----
+
+## 實際測試
+
+* 繪畫一年中日照長度圖形
+
+![img](https://i.imgur.com/MeYj0dc.png)
+
+
+
+
+
+-----
+
 ## 應用
 
 * 因為不是每台電腦有完整的開發環境，故利用`Microsoft Azure Notebooks`作為程式測試環境，以方便組員測試程式碼
@@ -1760,5 +1821,21 @@ pylab.show()
 
 ## 心得
 
+### 106502045
 
+經過是次報告我對python的語法熱練度大大提高，而
+
+-----
+
+### 吳詠碩
+
+一年內日間長度之變化 
+一 緣起: 
+小時候，爺爺常常與年幼的我們訴說他小時候務農的事。而這些故事大致上是在說在那個年代，人們總是從太陽升起時開始工作，而在天黑時回家休息。但是在一年之中，每一天太陽升起至落下中間日間時間都不太一樣。所以我就想知道在一年內的日間長度變化，已更加了解祖父輩們的生活作息。 
+二 實際應用: 
+雖然計算出一年內日間長度的變化看似是一件徒勞無功的研究。但實際上，這卻是一件很重要的數學公式。以下是一年內日間長度之變化的應用。 
+1.農業 
+每一種作物都有者各自的最佳日照時間。倘若農夫沒有管控好，那他們便會蒙受相當大的損失。為了使農夫能使作物長的好，了解一年內日間長度之變化是一件極為重要的事。 
+2.太陽能 
+最近因為全球暖化以及環保意識抬頭，因此人們逐漸以綠色能源取代石油、天然氣以及煤炭等會大量製造溫室氣體的能源。而在取代這些能源的綠色能源中，太陽能，是最受世人所重視的一項能源。而對於太陽能這個能源而言，日照時間是一個影響能源產量的一大重要因素。因此，掌握日照時間事對於太陽能源產量事一件極為重要的事。
 
