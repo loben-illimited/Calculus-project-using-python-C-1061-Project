@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from info import Get_info #取得資訊
 from info import Timezone_google_api #用google api 取得日出日落時間
 from formula import Calcular_sunrise_sunset_time #use Calcular_sunrise_sunset_time class
