@@ -22,8 +22,11 @@ class Get_info:
         
     def get_lat_lng(self):
         url = "https://maps.googleapis.com/maps/api/geocode/json?key="+self.api_key_for_geocoding+"&address="+self.location+"&language="+self.language
-        json_data = urlopen(url).read().decode("utf8") #將取得的data順帶編碼
-        jsonObj = json.loads(json_data) #create json object
+        try:
+            json_data = urlopen(url).read().decode("utf8") #將取得的data順帶編碼
+            jsonObj = json.loads(json_data) #create json object
+        except:
+            print("無法取得Json 請重新選取功能")
         try:
             self.address = jsonObj.get("results")[0].get("formatted_address")
             self.lat = jsonObj.get("results")[0].get("geometry").get("location").get("lat")
@@ -40,10 +43,13 @@ class Get_info:
         now = datetime.datetime.now()
         unix_time = time.mktime(datetime.datetime(now.year, now.month, now.day).timetuple())
         url = "https://maps.googleapis.com/maps/api/timezone/json?location="+str(self.lat)+","+str(self.lng)+"&timestamp="+str(unix_time)+"&key="+self.api_key_for_timezone+"&language="+self.language
-        json_data = urlopen(url).read().decode("utf8")
+        try:
+            json_data = urlopen(url).read().decode("utf8")
+            jsonObj = json.loads(json_data)
+        except:
+            print("無法取得Json 請重新選取功能")
         #print("json data: \n", json_data)
         try:
-            jsonObj = json.loads(json_data)
             self.rawOffset = jsonObj.get("rawOffset") #與UTC時間相差秒數
             self.timeZoneID = jsonObj.get("timeZoneId")
             self.timeZoneName = jsonObj.get("timeZoneName")
